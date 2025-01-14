@@ -9,12 +9,8 @@ dotenv.config({
   path: "./.env",
 });
 
-
 const app = express();
 app.use(express.json());
-
-
-
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -37,7 +33,6 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import Password from "./models/Password.js";
 
-
 app.get("/", async (req, res) => {
   console.log("Running...");
 });
@@ -46,12 +41,10 @@ app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   console.log(username, password);
 
- 
   const existingUser = await User.findOne({ username });
   if (existingUser) {
     return res.status(400).json({ error: "Username is already taken" });
   }
-
  
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -63,7 +56,6 @@ app.post("/signup", async (req, res) => {
     });
 
     await newUser.save();
-
     
     res
       .status(201)
@@ -90,7 +82,6 @@ app.post("/signin", async(req,res)=>{
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-   
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: '7d', // Token expiration time
     });
