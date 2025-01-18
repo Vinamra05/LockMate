@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import addicon from "../assets/addicon.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 const Manager = ({ isAuthenticated }) => {
